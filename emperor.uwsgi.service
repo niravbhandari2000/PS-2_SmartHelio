@@ -1,0 +1,16 @@
+[Unit]
+Description=uWSGI Emperor
+After=syslog.target
+
+[Service]
+ExecStart=/var/www/SH-dashboard/smarthelio_data_analytics/bin/uwsgi --ini /var/www/SH-dashboard/smarthelio_data_analytics/dashboard_uwsgi.ini
+# Requires systemd version 211 or newer
+RuntimeDirectory=uwsgi
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
